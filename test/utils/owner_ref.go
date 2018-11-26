@@ -25,7 +25,7 @@ import (
 func GetGitTrackObjectOwnerRef(gto *farosv1alpha1.GitTrackObject) metav1.OwnerReference {
 	t := true
 	return metav1.OwnerReference{
-		APIVersion:         "faros.pusher.com/v1",
+		APIVersion:         "faros.pusher.com/v1alpha1",
 		Kind:               "GitTrackObject",
 		Name:               gto.GetName(),
 		UID:                gto.GetUID(),
@@ -38,7 +38,7 @@ func GetGitTrackObjectOwnerRef(gto *farosv1alpha1.GitTrackObject) metav1.OwnerRe
 func GetClusterGitTrackObjectOwnerRef(gto *farosv1alpha1.ClusterGitTrackObject) metav1.OwnerReference {
 	t := true
 	return metav1.OwnerReference{
-		APIVersion:         "faros.pusher.com/v1",
+		APIVersion:         "faros.pusher.com/v1alpha1",
 		Kind:               "ClusterGitTrackObject",
 		Name:               gto.GetName(),
 		UID:                gto.GetUID(),
