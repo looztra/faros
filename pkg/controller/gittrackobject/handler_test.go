@@ -22,6 +22,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	farosv1alpha1 "github.com/pusher/faros/pkg/apis/faros/v1alpha1"
+	gittrackobjectutils "github.com/pusher/faros/pkg/controller/gittrackobject/utils"
 	farosflags "github.com/pusher/faros/pkg/flags"
 	"github.com/pusher/faros/pkg/utils"
 	testutils "github.com/pusher/faros/test/utils"
@@ -294,7 +295,7 @@ var _ = Describe("Handler Suite", func() {
 				Context("update", func() {
 					BeforeEach(func() {
 						annotations := child.GetAnnotations()
-						annotations["faros.pusher.com/update-strategy"] = "update"
+						annotations["faros.pusher.com/update-strategy"] = string(gittrackobjectutils.DefaultUpdateStrategy)
 						child.SetAnnotations(annotations)
 						Expect(testutils.SetGitTrackObjectInterfaceSpec(gto, child)).To(Succeed())
 
@@ -315,7 +316,7 @@ var _ = Describe("Handler Suite", func() {
 				Context("never", func() {
 					BeforeEach(func() {
 						annotations := child.GetAnnotations()
-						annotations["faros.pusher.com/update-strategy"] = "never"
+						annotations["faros.pusher.com/update-strategy"] = string(gittrackobjectutils.NeverUpdateStrategy)
 						child.SetAnnotations(annotations)
 						Expect(testutils.SetGitTrackObjectInterfaceSpec(gto, child)).To(Succeed())
 
@@ -333,10 +334,10 @@ var _ = Describe("Handler Suite", func() {
 					})
 				})
 
-				Context("replace", func() {
+				Context("recreate", func() {
 					BeforeEach(func() {
 						annotations := child.GetAnnotations()
-						annotations["faros.pusher.com/update-strategy"] = "replace"
+						annotations["faros.pusher.com/update-strategy"] = string(gittrackobjectutils.RecreateUpdateStrategy)
 						child.SetAnnotations(annotations)
 						Expect(testutils.SetGitTrackObjectInterfaceSpec(gto, child)).To(Succeed())
 
