@@ -56,7 +56,7 @@ lint:
        --enable=deadcode \
        --enable=gofmt \
        --enable=goimports \
-       --deadline=60s \
+       --deadline=120s \
        --tests ./... \
        -s pkg/client
 
